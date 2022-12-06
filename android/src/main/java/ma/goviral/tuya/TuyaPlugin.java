@@ -51,7 +51,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("init")) {
-      TuyaHomeSdk.init(getApplication());
+      TuyaHomeSdk.init(flutterPluginBinding.getApplicationContext());
       result.notImplemented();
     }
 
@@ -172,7 +172,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
                   // Start network configuration -- EZ mode
                   ActivatorBuilder builder = new ActivatorBuilder()
                           .setSsid(call.argument("ssid"))
-                          .setContext(getApplication())
+                          .setContext(flutterPluginBinding.getApplicationContext())
                           .setPassword(call.argument("password"))
                           .setActivatorModel(ActivatorModelEnum.TY_EZ)
                           .setTimeOut(100)
