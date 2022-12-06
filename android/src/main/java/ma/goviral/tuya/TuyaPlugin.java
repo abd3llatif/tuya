@@ -41,9 +41,11 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
+  private Context context;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+    context = flutterPluginBinding.getApplicationContext();
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "goviral.ma/Tuya");
     channel.setMethodCallHandler(this);
   }
@@ -51,7 +53,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("init")) {
-      TuyaHomeSdk.init(flutterPluginBinding.getApplicationContext());
+      TuyaHomeSdk.init(context);
       result.notImplemented();
     }
 
@@ -172,7 +174,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
                   // Start network configuration -- EZ mode
                   ActivatorBuilder builder = new ActivatorBuilder()
                           .setSsid(call.argument("ssid"))
-                          .setContext(flutterPluginBinding.getApplicationContext())
+                          .setContext(context)
                           .setPassword(call.argument("password"))
                           .setActivatorModel(ActivatorModelEnum.TY_EZ)
                           .setTimeOut(100)
