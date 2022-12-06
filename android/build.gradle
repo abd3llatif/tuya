@@ -1,0 +1,61 @@
+group 'ma.goviral.tuya'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+
+        // The Tuya IoT Maven repository URL.
+        maven {
+            url "https://maven-other.tuya.com/repository/maven-releases/"
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url "https://maven-other.tuya.com/repository/maven-releases/"
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'lib/*/libc++_shared.so' // An Android Archive (AAR) file contains an Android library. If the .so file exists in multiple AAR files, select the first AAR file.
+    }
+}
+
+dependencies {
+
+    implementation 'com.alibaba:fastjson:1.1.67.android'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
+
+    implementation 'com.tuya.smart:tuyasmart:3.36.1'
+
+}
