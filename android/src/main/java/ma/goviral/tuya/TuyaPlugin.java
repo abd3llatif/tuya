@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Objects;
 
 import android.content.Context;
-import android.app.Activity;
+import android.app.Application;
 
 
 /** TuyaPlugin */
@@ -56,7 +56,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("init")) {
-      TuyaHomeSdk.init(((Activity) context).getApplication());
+      TuyaHomeSdk.init(((Application) context));
       result.notImplemented();
     }
 
@@ -177,7 +177,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
                   // Start network configuration -- EZ mode
                   ActivatorBuilder builder = new ActivatorBuilder()
                           .setSsid(call.argument("ssid"))
-                          .setContext(((Activity) context).getApplication())
+                          .setContext(((Application) context))
                           .setPassword(call.argument("password"))
                           .setActivatorModel(ActivatorModelEnum.TY_EZ)
                           .setTimeOut(100)
