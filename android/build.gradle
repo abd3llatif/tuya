@@ -58,4 +58,7 @@ dependencies {
 
     implementation 'com.tuya.smart:tuyasmart:3.36.1'
 
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
 }
