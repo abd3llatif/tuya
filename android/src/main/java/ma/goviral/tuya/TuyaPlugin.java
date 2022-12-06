@@ -57,7 +57,7 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("init")) {
       TuyaHomeSdk.init(((Application) context));
-      result.notImplemented();
+      result.success(true);
     }
 
     if (call.method.equals("sendVerificationCode")) {
