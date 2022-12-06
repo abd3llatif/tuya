@@ -8,8 +8,6 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.tuya.smart.android.ble.builder.BleConnectBuilder;
 import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
@@ -193,10 +191,10 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
 
                             @Override
                             public void onStep(String step, Object data) {
-                              Toast.makeText(getApplication(),
-                                      step + " --> " + data,
-                                      Toast.LENGTH_LONG
-                              ).show();
+//                              Toast.makeText(getApplication(),
+//                                      step + " --> " + data,
+//                                      Toast.LENGTH_LONG
+//                              ).show();
                             }
                           });
 
@@ -300,10 +298,10 @@ public class TuyaPlugin implements FlutterPlugin, MethodCallHandler {
         @Override
         public void onError(String errorCode, String errorMsg) {
 
-          Toast.makeText(getApplication(),
-                  "Activate error-->" + errorMsg,
-                  Toast.LENGTH_LONG
-          ).show();
+//          Toast.makeText(getApplication(),
+//                  "Activate error-->" + errorMsg,
+//                  Toast.LENGTH_LONG
+//          ).show();
           result.error(errorCode, errorMsg, null);
         }
       });
